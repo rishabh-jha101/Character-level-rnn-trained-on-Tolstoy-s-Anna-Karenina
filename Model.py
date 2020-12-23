@@ -1,5 +1,11 @@
-class CharRNN(nn.Module):
+import numpy as np
+import torch
+from torch import nn
 
+# check if GPU is available
+train_on_gpu = torch.cuda.is_available()
+
+class CharRNN(nn.Module):
     def __init__(self, tokens, n_hidden=256, n_layers=2,
                                drop_prob=0.5, lr=0.001):
         super().__init__()

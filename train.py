@@ -3,7 +3,8 @@ import torch
 from torch import nn
 import torch.nn.functional as F
 from Model import CharRNN
-from tokenization import encoded, one_hot_encoder
+from tokenization import encoded, chars, one_hot_encoder
+from get_batches import get_batches
 
 ## Hyperparameters
 
@@ -96,7 +97,7 @@ def train(net, data, epochs=10, batch_size=10, seq_length=50, lr=0.001, clip=5, 
                 net.eval()
                 for x, y in get_batches(val_data, batch_size, seq_length):
                     # One-hot encode our data and make them Torch tensors
-                    x = one_hot_encode(x, n_chars)
+                    x = one_hot_encoder(x, n_chars)
                     x, y = torch.from_numpy(x), torch.from_numpy(y)
 
                     # Creating new variables for the hidden state, otherwise

@@ -122,3 +122,13 @@ if __name__=="__main__":
     net = CharRNN(chars, n_hidden, n_layers)
     print(net)
     train(net, encoded, epochs= epochs, batch_size=batch_size, seq_length=seq_length, lr = learning_rate, print_every = 15)
+
+    model_name = 'rnn_20_epoch.net'
+
+    checkpoint = {'n_hidden': net.n_hidden,
+              'n_layers': net.n_layers,
+              'state_dict': net.state_dict(),
+              'tokens': net.chars}
+
+    with open(model_name, 'wb') as f:
+        torch.save(checkpoint, f)

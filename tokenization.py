@@ -16,7 +16,7 @@ char2int = {ch: ii for ii, ch in int2char.items()}
 # encode the text
 encoded = np.array([char2int[ch] for ch in text])
 
-def one_hot_encode(arr, n_labels):
+def one_hot_encoder(arr, n_labels):
 
     # Initialize the the encoded array
     one_hot = np.zeros((arr.size, n_labels), dtype=np.float32)
